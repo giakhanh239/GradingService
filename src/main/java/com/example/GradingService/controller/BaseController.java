@@ -13,8 +13,6 @@ import com.example.GradingService.service.BaseService;
 @RequestMapping("")
 public class BaseController {
 	 Logger logger = LogManager.getLogger(BaseController.class);
-	 @Autowired
-	 BaseService baseService;
-	 
+	
 	 
 }
