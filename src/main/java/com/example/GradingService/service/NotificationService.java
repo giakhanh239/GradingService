@@ -10,8 +10,6 @@ private static final String CHAT_ID = "-1001577190792";
 
     public static void sendNotification(String message) {
         TelegramBot telegramBot = new TelegramBot(TOKEN);
-        // SendMessage 9123ccb41bb8d88de3_12660501131533155990
-        System.out.println("x");
         telegramBot.execute(new SendMessage(CHAT_ID, message));
     }
 
