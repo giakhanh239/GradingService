@@ -25,5 +25,5 @@ public class Student {
 	private double chuyenCan;
 	private double baiTap;
 	private double thucHanh;
-	private double cuoiKy;
+	private double cuoiKy=0.0;
 }
