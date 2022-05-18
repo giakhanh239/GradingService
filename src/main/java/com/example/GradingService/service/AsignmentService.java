@@ -9,4 +9,5 @@ public interface AsignmentService {
 	boolean saveAssignment(Asignment asignment, int studentId);
 	boolean checkTitleFormat(MultipartFile file);
 	Asignment mergeStudentToAssignment(Asignment asignment, int studentId);
+	boolean markAssignmentManually(int asignmentId, double score);
 }

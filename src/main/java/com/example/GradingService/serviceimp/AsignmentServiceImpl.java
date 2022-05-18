@@ -10,6 +10,7 @@ import com.example.GradingService.entity.Student;
 import com.example.GradingService.repository.AsignmentRepository;
 import com.example.GradingService.repository.StudentRepository;
 import com.example.GradingService.service.AsignmentService;
+import com.example.GradingService.service.NotificationService;
 
 @Service
 public class AsignmentServiceImpl implements AsignmentService {
@@ -63,4 +64,18 @@ public class AsignmentServiceImpl implements AsignmentService {
 	}
 	
 
+	@Override
+	public boolean markAssignmentManually(int asignmentId, double score) {
+		Asignment asignment = new Asignment();
+		asignment = asignmentRepository.findById(asignmentId).get();
+		
+		int studentId = asignment.getStudent().getId();
+		Student student = new Student();
+		student = studentRespository.findById(studentId).get();
+		student.setCuoiKy(score);
+
+		studentRespository.save(student);
+		NotificationService.sendNotification("Sinh viên: @" + student.getName() + " - MSV: " + studentId + " đã hoàn thành bài thi! Kết quả: " + score + " điểm" );
+		return true;
+	}
 }

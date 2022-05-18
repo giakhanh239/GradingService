@@ -14,10 +14,13 @@ import javax.swing.text.Document;
 import javax.swing.text.Element;
 import javax.swing.text.Position;
 import javax.swing.text.Segment;
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +32,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.example.GradingService.entity.Asignment;
 import com.example.GradingService.response.Response;
 import com.example.GradingService.service.AsignmentService;
+import com.example.GradingService.service.NotificationService;
 import com.example.GradingService.service.StudentService;
 
 import org.springframework.util.StringUtils;
@@ -57,5 +61,14 @@ public class AsignmentController {
 			return new ResponseEntity<Response>(new Response("Can't Save File"),HttpStatus.PAYMENT_REQUIRED);
 		}
 		return ResponseEntity.ok(asignmentService.mergeStudentToAssignment(asignment, id));
+	}
+
+	@PostMapping("/mark/{id}")
+	public ResponseEntity markManually(@PathVariable("id") int assignmentId, @RequestParam("score") double score) {
+		boolean markSuccessfully = asignmentService.markAssignmentManually(assignmentId, score);
+		if(markSuccessfully) {
+			return ResponseEntity.ok(new Response("Mark Successfully!"));
+		}
+		return new ResponseEntity<Response>(new Response("Mark Failed!"),HttpStatus.PAYMENT_REQUIRED);
 	}
 }
