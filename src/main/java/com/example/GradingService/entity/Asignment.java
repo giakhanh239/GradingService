@@ -26,6 +26,8 @@ public class Asignment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column
+	private String status;
+	@Column
 	private String type;
 	@Column
 	private String title;
@@ -33,6 +35,8 @@ public class Asignment {
 	@Lob
 	@JsonIgnore
 	private byte[] data;
+	@Column
+	private String dataMultipleChoice;
 	@Column
 	private String submitDate;
 	@OneToOne

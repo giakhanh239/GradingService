@@ -78,4 +78,30 @@ public class AsignmentServiceImpl implements AsignmentService {
 		NotificationService.sendNotification("Sinh viên: @" + student.getName() + " - MSV: " + studentId + " đã hoàn thành bài thi! Kết quả: " + score + " điểm" );
 		return true;
 	}
+
+
+
+	@Override
+	public void clasifyAssignment(int asignmentId) {
+		String[] Ans = {"a","b","c","d","e"};
+		Asignment asignment = new Asignment();
+		asignment = asignmentRepository.findById(asignmentId).get();
+		if(asignment.getType().equals("tl")){
+			asignment.setStatus("pending");
+			// asignmentRepository.save(asignment);
+			NotificationService.sendNotification("Bài thi của sinh viên @" + asignment.getStudent().getName() + " đang trong quá trình chấm điểm");
+		} else{ //Bài thi trắc nghiệm
+			double score = 0.0;
+			String result = asignment.getDataMultipleChoice();
+			String[] arr1 = result.split(";");
+			for(String i: arr1){
+				String[] arr2 = i.split("-");
+				if(Ans[Integer.parseInt(arr2[0])-1].equals(arr2[1])){
+					score += 2;
+				}
+			}
+
+			markAssignmentManually(asignmentId, score);
+		}
+	}
 }
