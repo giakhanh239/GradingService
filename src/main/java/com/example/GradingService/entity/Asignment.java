@@ -39,7 +39,6 @@ public class Asignment {
 	private String dataMultipleChoice;
 	@Column
 	private String submitDate;
-	@OneToOne
-	@JoinColumn(name = "studentId")
-	private Student student;
+	@Column
+	private int studentId;
 }

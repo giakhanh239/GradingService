@@ -6,9 +6,5 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.GradingService.entity.Asignment;
 @Service
 public interface AsignmentService {
-	boolean saveAssignment(Asignment asignment, int studentId);
-	boolean checkTitleFormat(MultipartFile file);
-	Asignment mergeStudentToAssignment(Asignment asignment, int studentId);
-	void clasifyAssignment(int asignmentId);
-	boolean markAssignmentManually(int asignmentId, double score);
+
 }
