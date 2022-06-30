@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Response {
+public class GradingResponse {
 	private String status;
+	private double score;
 }
