@@ -15,12 +15,12 @@ import com.example.GradingService.service.AsignmentService;
 
 
 @RestController
-@RequestMapping("grading")
+@RequestMapping("mark")
 public class GradingController {
 	@Autowired
 	AsignmentService asignmentService;
 
-	@PostMapping("/mark")
+	@PostMapping("/assignment")
 	public ResponseEntity markManually(@RequestBody Asignment asignment) {
 		double score = asignmentService.markAssignmentManually(asignment);
 		return new ResponseEntity<GradingResponse>(new GradingResponse("Complete Grading", score),HttpStatus.OK);
