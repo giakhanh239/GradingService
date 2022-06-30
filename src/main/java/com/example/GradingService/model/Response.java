@@ -1,4 +1,4 @@
-package com.example.GradingService.response;
+package com.example.GradingService.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ErrorResponse {
-	private String error;
-	
+public class Response {
+	private String status;
 }
