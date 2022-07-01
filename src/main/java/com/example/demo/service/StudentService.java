@@ -8,4 +8,6 @@ import com.example.demo.entity.Student;
 public interface StudentService{
 	boolean isStudentQualified(int studentId);
 	Student getStudentById(int studentId);
+	void saveStudent(Student student);
+
 }

@@ -6,6 +6,10 @@ import org.springframework.stereotype.Service;
 import com.example.demo.entity.Student;
 import com.example.demo.repository.StudentRepository;
 import com.example.demo.service.StudentService;
+
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
+import lombok.extern.java.Log;
 @Service
 public class StudentServiceImpl implements StudentService {
 	@Autowired
@@ -26,9 +30,17 @@ public class StudentServiceImpl implements StudentService {
 	public Student getStudentById(int studentId) {
 		Student student = new Student();
 		student = studentRepository.getById(studentId);
+		System.out.println(student.getId() + " " + student.getName());
 		if(student.getId() != 0)
 			return student;
 		return null;
 	}
+
+	@Override
+	public void saveStudent(Student student) {
+		studentRepository.save(student);
+	}
+
+	
 
 }
